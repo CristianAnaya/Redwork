@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "89738809767",
+    "firebase_url": "https://redwork-59df7-default-rtdb.firebaseio.com",
+    "project_id": "redwork-59df7",
+    "storage_bucket": "redwork-59df7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89738809767:android:b585ca6c436f90541da682",
+        "android_client_info": {
+          "package_name": "com.redwork.co"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89738809767-7c80lo075imuhapdg2maq9naoit2nm84.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.redwork.co",
+            "certificate_hash": "7e02f29f7a7a0986c28e9ff7d7093cb33131302a"
+          }
+        },
+        {
+          "client_id": "89738809767-p49prm7fo5i4ck4hkb61c2fd8qq4bupu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.redwork.co",
+            "certificate_hash": "80d8cdbc6be8fb87cca36f42f56c4b177e4a6e1c"
+          }
+        },
+        {
+          "client_id": "89738809767-q681br67u8d3ii6jfa63if7mi0rpuhs0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp00i03Wdk0Sdv9VA3_iK22kGJ0p9_yV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89738809767-q681br67u8d3ii6jfa63if7mi0rpuhs0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "89738809767-3h287cv82tt2q225qnrdjv4s9okq2562.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.inc.redwork"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
