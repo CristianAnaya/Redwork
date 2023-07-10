@@ -14,5 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Redwork"
 include ':app'
-include ':domain'
 include ':infrastructure'
+include ':domain'

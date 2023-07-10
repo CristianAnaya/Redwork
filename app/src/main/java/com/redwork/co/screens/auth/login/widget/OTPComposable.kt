@@ -27,15 +27,15 @@ import com.redwork.co.ui.theme.gray20Bold
 
 @Composable
 fun OTPComposable(
-    home: () -> Unit,
-    formFill: () -> Unit,
     viewModel: LoginViewModel = viewModel()
 ) {
+    val state = viewModel.state
+
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
 
     AnimatedVisibility(
-        visible = viewModel.otpSent,
+        visible = viewModel.state.validationId.isNotEmpty(),
     ) {
         Column {
             SizedBox(height = 20)
@@ -45,7 +45,7 @@ fun OTPComposable(
             )
             SizedBox(height = 10)
             TextField(
-                value = viewModel.otp,
+                value = state.otp,
                 textStyle = black20Bold,
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,

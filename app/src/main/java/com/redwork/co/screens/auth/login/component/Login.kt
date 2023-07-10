@@ -9,6 +9,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.redwork.co.R
 import com.redwork.co.components.CircularIndicatorMessage
+import com.redwork.co.components.asString
 import com.redwork.co.screens.auth.login.LoginViewModel
 import com.redwork.domain.core.Resource
 
@@ -24,7 +25,7 @@ fun Login(
         is Resource.Success -> {
         }
         is Resource.Failure -> {
-            Toast.makeText(LocalContext.current, response.message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(LocalContext.current, asString(uiText = response.message), Toast.LENGTH_SHORT).show()
         }
         else -> {
             if (response != null)

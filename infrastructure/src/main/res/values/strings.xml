@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- MODULE OTP !-->
+    <string name="failed_get_otp">Ocurrio un error al obtener el codigo de verificación</string>
+    <string name="invalid_verification_code">Codigo de verificación incorrecto</string>
+    <string name="wrong_phone_number">Número de teléfono incorrecto</string>
+    <string name="unexpected_error_login">Ocurrio un error al tratar de iniciar sesion, por favor vuelve a intentarlo</string>
+
+
+    <!--ERROR HTTP !-->
+    <string name="not_found_result">No se encontro resultado</string>
+    <string name="unknow_message_server">Ocurrió un error al realizar la solicitud</string>
+    <string name="there_is_not_network_connection">Por favor verifica tu conexión a internet</string>
+    <string name="unexpected_error">Ocurrió un error inexperado</string>
+
+</resources>

@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">Redwork</string>
-    <string name="insert_phone_number">Inserta tu número de telefono para continuar</string>
+    <string name="enter_phone_number">Ingresa tu número de telefono para continuar</string>
     <string name="phone_helper">Tu número del telefono</string>
     <string name="enter_otp">Ingresa el codigo para verificar</string>
     <string name="otp_helper">codigo de 6 digitos</string>
     <string name="verify">Verificar</string>
+    <string name="ok">Esta bien</string>
     <string name="continue_button">Continuar</string>
-    <string name="please_wait">Please wait…</string>
+    <string name="please_wait">Por favor espere un momento…</string>
     <string name="web_client_id">89738809767-q681br67u8d3ii6jfa63if7mi0rpuhs0.apps.googleusercontent.com</string>
 
     <string name="image_description">In-App Images</string>

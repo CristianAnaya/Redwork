@@ -50,11 +50,9 @@ import com.redwork.co.ui.theme.white20Bold
 @Composable
 fun LoginContent(
     paddingValues: PaddingValues,
-    formFill: () -> Unit,
-    home: () -> Unit,
     viewModel: LoginViewModel = hiltViewModel(),
 ) {
-
+    val state = viewModel.state
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
 
@@ -70,14 +68,14 @@ fun LoginContent(
                 .padding(horizontal = 15.dp, vertical = 30.dp)
         ) {
             Text(
-                stringResource(id = R.string.insert_phone_number),
+                stringResource(id = R.string.enter_phone_number),
                 style = MaterialTheme.typography.bodyLarge
             )
             SizedBox(
                 sizeFloat = 0.1f
             )
             TextField(
-                value = viewModel.phone,
+                value = state.phone,
                 textStyle = black20Bold,
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
@@ -107,33 +105,26 @@ fun LoginContent(
                 keyboardActions = KeyboardActions(
                     onDone = {
                         focusManager.clearFocus()
-                        if (context is Activity) {
-                            //authenticationViewModel.sendOTPToPhoneNumber(context)
-                        }
+                        //authenticationViewModel.sendOTPToPhoneNumber(context)
                     }
                 )
             )
-            OTPComposable(
-                home = home,
-                formFill = formFill
-            )
+            OTPComposable()
             SizedBox(height = 50)
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(50),
                 onClick = {
                     focusManager.clearFocus()
-                    if (context is Activity) {
-                        if (viewModel.otpSent) {
-                            //authenticationViewModel.verifyOTP(context, home, formFill)
-                        } else {
-                           // authenticationViewModel.sendOTPToPhoneNumber(context)
-                        }
+                    if (state.validationId.isNotEmpty()) {
+                        //authenticationViewModel.verifyOTP(context, home, formFill)
+                    } else {
+                        // authenticationViewModel.sendOTPToPhoneNumber(context)
                     }
                 }
             ) {
                 Text(
-                    if (viewModel.otpSent)
+                    if (state.validationId.isNotEmpty())
                         stringResource(id = R.string.verify).uppercase()
                     else
                         stringResource(id = R.string.continue_button).uppercase(),

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="unexpected_error">Ocurrio un error, por favor vuelvelo a intentar</string>
+    <string name="empty_phone_parameter">Por favor, ingresa el telefono para continuar</string>
+</resources>

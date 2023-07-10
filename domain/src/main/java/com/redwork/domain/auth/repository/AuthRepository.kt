@@ -1,4 +1,16 @@
 package com.redwork.domain.auth.repository
 
+import com.redwork.domain.auth.model.Auth
+import com.redwork.domain.core.Resource
+import kotlinx.coroutines.flow.Flow
+
 interface AuthRepository {
+    fun getOTP(phone: String, country: String): Flow<Resource<String>>
+
+    fun loginWithOTP(
+        phone: String,
+        code: String,
+        verificationId: String): Flow<Resource<Auth>>
+
+    fun getSession(auth: Auth): Flow<Resource<Auth>>
 }
