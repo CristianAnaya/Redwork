@@ -18,7 +18,6 @@ class LoginUseCase(private val repository: AuthRepository) {
         if (phone.isEmpty() || code.isEmpty() || verificationId.isEmpty()) {
             return flowOf(Resource.Failure(UiText.StringResource(R.string.unexpected_error)))
         }
-
         return repository.loginWithOTP(phone, code, verificationId)
     }
 

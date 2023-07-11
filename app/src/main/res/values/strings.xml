@@ -11,4 +11,8 @@
     <string name="web_client_id">89738809767-q681br67u8d3ii6jfa63if7mi0rpuhs0.apps.googleusercontent.com</string>
 
     <string name="image_description">In-App Images</string>
+    <string name="we_verify_your_number">Verificamos tu número</string>
+    <string name="choose_role">Elige que rol quieres tener</string>
+    <string name="choose_role_worker">Ser un redworking</string>
+    <string name="choose_role_client">Encontrar servicios</string>
 </resources>

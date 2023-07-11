@@ -1,11 +1,16 @@
 package com.redwork.infrastructure.auth.di
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.redwork.domain.auth.repository.AuthRepository
 import com.redwork.infrastructure.auth.network.service.AuthService
+import com.redwork.infrastructure.auth.repository.AuthDataStorePreferencesRepository
 import com.redwork.infrastructure.auth.repository.AuthFirebaseRepository
 import com.redwork.infrastructure.auth.repository.AuthProxy
+import com.redwork.infrastructure.auth.repository.AuthRetrofitRepository
 import com.redwork.infrastructure.auth.repository.contracts.AuthDataSourceRepository
 import com.redwork.infrastructure.auth.repository.contracts.AuthRemoteRepository
+import com.redwork.infrastructure.auth.repository.contracts.AuthTemporalRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,16 +31,27 @@ object AuthModuleDependencyInjection {
 
     @Provides
     fun provideAuthRemoteRepository(
-        authFirebaseRepository: AuthFirebaseRepository
-    ): AuthDataSourceRepository = AuthFirebaseRepository()
+        authService: AuthService
+    ): AuthRemoteRepository = AuthRetrofitRepository(authService = authService)
+
+    @Provides
+    fun provideAuthDataSourceRepository(): AuthDataSourceRepository = AuthFirebaseRepository()
+
+    @Provides
+    @Singleton
+    fun provideAuthTemporalRepository(
+        dataStore: DataStore<Preferences>
+    ): AuthTemporalRepository = AuthDataStorePreferencesRepository(dataStore)
 
     @Provides
     fun provideAuthRepository(
         dataSourceRepository: AuthDataSourceRepository,
-        remoteRepository: AuthRemoteRepository
+        remoteRepository: AuthRemoteRepository,
+        temporalRepository: AuthTemporalRepository
     ): AuthRepository = AuthProxy(
         dataSourceRepository = dataSourceRepository,
-        remoteRepository = remoteRepository
+        remoteRepository = remoteRepository,
+        temporalRepository = temporalRepository
     )
 
 }

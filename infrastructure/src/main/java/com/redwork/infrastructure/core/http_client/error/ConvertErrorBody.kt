@@ -1,6 +1,5 @@
 package com.redwork.infrastructure.core.http_client.error
 
-import com.redwork.infrastructure.core.http_client.model.ErrorResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.ResponseBody

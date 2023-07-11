@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace 'com.redwork.co'
+    namespace 'com.redwork.inc'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.redwork.co"
+        applicationId "com.redwork.inc"
         minSdk 24
         targetSdk 33
         versionCode 1

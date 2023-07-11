@@ -1,5 +1,7 @@
 package com.redwork.infrastructure.auth.repository
 
+import android.app.Activity
+import android.util.Log
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -25,25 +27,38 @@ class AuthFirebaseRepository: AuthDataSourceRepository {
 
     companion object {
         private val fAuth = FirebaseAuth.getInstance()
+
     }
 
-    override fun getOTP(phone: String, country: String): Flow<Resource<String>> = callbackFlow {
+    override fun getOTP(phone: String, country: String, context: Activity): Flow<Resource<String>> = callbackFlow {
         try {
+
+            fAuth.firebaseAuthSettings.setAppVerificationDisabledForTesting(true);
+
             val options = PhoneAuthOptions.newBuilder(fAuth)
-                .setPhoneNumber(phone)
-                .setTimeout(60L, TimeUnit.SECONDS)
+                .setPhoneNumber("+57$phone")
+                .setActivity(context)
+                .setTimeout(10L, TimeUnit.SECONDS)
                 .setCallbacks(object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                    override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                        val otp = credential.smsCode
-                        if (otp != null) {
-                            trySend(Resource.Success(otp))
-                        } else {
+                    override fun onCodeSent(
+                        verificationId: String,
+                        token: PhoneAuthProvider.ForceResendingToken
+                    ) {
+                        if (verificationId.isNotEmpty())
+                            trySend(Resource.Success(verificationId))
+                        else
                             trySend(Resource.Failure(UiText.StringResource(failed_get_otp)))
-                        }
+
                         close()
                     }
 
-                    override fun onVerificationFailed(e: FirebaseException) {
+                    override fun onCodeAutoRetrievalTimeOut(verificationId: String) {
+                    }
+
+                    override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
+                    }
+
+                    override fun onVerificationFailed(exception: FirebaseException) {
                         trySend(Resource.Failure(UiText.StringResource(failed_get_otp)))
                         close()
                     }

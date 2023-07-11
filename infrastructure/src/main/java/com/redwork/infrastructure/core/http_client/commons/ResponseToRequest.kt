@@ -1,5 +1,6 @@
 package com.redwork.infrastructure.core.http_client.commons
 
+import android.util.Log
 import com.redwork.domain.core.Resource
 import com.redwork.domain.core.UiText
 import com.redwork.infrastructure.R.string.not_found_result
@@ -16,6 +17,7 @@ object ResponseToRequest {
     inline fun <T, M> send(result: Response<T>, mapper: (T) -> M): Resource<M> {
         return try {
             if (result.isSuccessful) {
+                Log.d("ResponseToRequest", "send: ${result.body()}")
                 result.body()?.let { body ->
                     Resource.Success(mapper(body))
                 } ?: Resource.Failure(UiText.StringResource(not_found_result))

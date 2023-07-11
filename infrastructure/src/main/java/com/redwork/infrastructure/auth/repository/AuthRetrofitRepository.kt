@@ -1,5 +1,6 @@
 package com.redwork.infrastructure.auth.repository
 
+import android.util.Log
 import com.redwork.domain.auth.model.Auth
 import com.redwork.domain.auth.model.User
 import com.redwork.domain.core.Resource
@@ -13,6 +14,7 @@ class AuthRetrofitRepository(private val authService: AuthService): AuthRemoteRe
     override suspend fun login(phone: String): Resource<Auth> {
         val response = authService.login(phone)
         return ResponseToRequest.send(response) { authResponse ->
+            Log.d("AuthRetrofitRepository", "login: $authResponse")
             authResponse.toAuth()
         }
     }

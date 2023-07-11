@@ -8,25 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:89738809767:android:b585ca6c436f90541da682",
+        "mobilesdk_app_id": "1:89738809767:android:dc1b86dfcad3e1f31da682",
         "android_client_info": {
-          "package_name": "com.redwork.co"
+          "package_name": "com.redwork.inc"
         }
       },
       "oauth_client": [
         {
-          "client_id": "89738809767-7c80lo075imuhapdg2maq9naoit2nm84.apps.googleusercontent.com",
+          "client_id": "89738809767-ndlm77hempoafvgf0t2efdtnsrdfqei1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.redwork.co",
-            "certificate_hash": "7e02f29f7a7a0986c28e9ff7d7093cb33131302a"
-          }
-        },
-        {
-          "client_id": "89738809767-p49prm7fo5i4ck4hkb61c2fd8qq4bupu.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.redwork.co",
+            "package_name": "com.redwork.inc",
             "certificate_hash": "80d8cdbc6be8fb87cca36f42f56c4b177e4a6e1c"
           }
         },
@@ -37,7 +29,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCp00i03Wdk0Sdv9VA3_iK22kGJ0p9_yV0"
+          "current_key": "AIzaSyCSD0C3bcDvBqfyoOW-gcCJ7M0gU2G1GTE"
         }
       ],
       "services": {

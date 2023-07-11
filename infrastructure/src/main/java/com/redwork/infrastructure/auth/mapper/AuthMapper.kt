@@ -14,7 +14,7 @@ fun AuthDto.toAuth(): Auth {
 
 fun Auth.toAuthDto(): AuthDto {
     return AuthDto(
-        user = user?.toUserDto()!!,
+        user = user?.toUserDto(),
         token = token ?: ""
     )
 }
