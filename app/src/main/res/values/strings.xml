@@ -7,6 +7,7 @@
     <string name="verify">Verificar</string>
     <string name="ok">Esta bien</string>
     <string name="continue_button">Continuar</string>
+    <string name="save_information">Guardar</string>
     <string name="please_wait">Por favor espere un momento…</string>
     <string name="web_client_id">89738809767-q681br67u8d3ii6jfa63if7mi0rpuhs0.apps.googleusercontent.com</string>
 
@@ -15,4 +16,13 @@
     <string name="choose_role">Elige que rol quieres tener</string>
     <string name="choose_role_worker">Ser un redworking</string>
     <string name="choose_role_client">Encontrar servicios</string>
+    <string name="account_created">Cuenta creada</string>
+    <string name="account_created_helper">Finalmente eres un miembro de nuestra familia. Todavía necesitamos algunos detalles más para conocerte mejor.</string>
+    <string name="name_helper">Ingresa tú nombre</string>
+    <string name="name">Nombre</string>
+    <string name="enter_lastname">Ingresa tu apellido</string>
+    <string name="lastname">Apellido</string>
+    <string name="email_helper">Ingresa tu email</string>
+    <string name="email">Email</string>
+    <string name="email_note">**Solo se usará para cualquier tipo de duda o soporte que se presente durante el uso de la plataforma</string>
 </resources>

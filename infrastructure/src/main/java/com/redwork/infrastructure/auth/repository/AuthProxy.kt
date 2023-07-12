@@ -2,9 +2,11 @@ package com.redwork.infrastructure.auth.repository
 
 import android.app.Activity
 import com.redwork.domain.auth.model.Auth
+import com.redwork.domain.auth.model.Register
 import com.redwork.domain.auth.repository.AuthRepository
 import com.redwork.domain.core.Resource
 import com.redwork.domain.core.UiText
+import com.redwork.infrastructure.R.string.there_is_not_network_connection
 import com.redwork.infrastructure.R.string.unexpected_error_login
 import com.redwork.infrastructure.auth.repository.contracts.AuthDataSourceRepository
 import com.redwork.infrastructure.auth.repository.contracts.AuthRemoteRepository
@@ -32,14 +34,20 @@ class AuthProxy(
             it.run {
                 when(this) {
                     is Resource.Success -> {
-                        val loginResult = remoteRepository.login(phone = this.data)
+                        try {
+                            val loginResult = remoteRepository.login(phone = this.data)
 
-                        if (loginResult is Resource.Success) {
-                            val auth = loginResult.data
-                            auth.user?.let { temporalRepository.saveSession(auth) }
+                            if (loginResult is Resource.Success) {
+                                val auth = loginResult.data
+                                auth.user?.let { temporalRepository.saveSession(auth) }
+                            }
+
+                            emit(loginResult)
+                        } catch (e: Exception) {
+                            emit(Resource.Failure(UiText.StringResource(
+                                there_is_not_network_connection
+                            )))
                         }
-
-                        emit(loginResult)
                     }
                     is Resource.Failure -> {
                         emit(Resource.Failure(message))
@@ -49,6 +57,19 @@ class AuthProxy(
                     }
                 }
             }
+        }
+    }
+
+    override suspend fun register(register: Register): Resource<Auth> {
+        return try {
+            val registerResult = remoteRepository.register(register)
+            if (registerResult is Resource.Success) {
+                val auth = registerResult.data
+                temporalRepository.saveSession(auth)
+            }
+            registerResult
+        } catch (e: Exception) {
+            Resource.Failure(UiText.StringResource(there_is_not_network_connection))
         }
     }
 

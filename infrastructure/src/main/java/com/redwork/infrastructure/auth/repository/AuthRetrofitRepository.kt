@@ -2,9 +2,10 @@ package com.redwork.infrastructure.auth.repository
 
 import android.util.Log
 import com.redwork.domain.auth.model.Auth
-import com.redwork.domain.auth.model.User
+import com.redwork.domain.auth.model.Register
 import com.redwork.domain.core.Resource
 import com.redwork.infrastructure.auth.mapper.toAuth
+import com.redwork.infrastructure.auth.mapper.toRegisterDto
 import com.redwork.infrastructure.auth.network.service.AuthService
 import com.redwork.infrastructure.auth.repository.contracts.AuthRemoteRepository
 import com.redwork.infrastructure.core.http_client.commons.ResponseToRequest
@@ -19,8 +20,11 @@ class AuthRetrofitRepository(private val authService: AuthService): AuthRemoteRe
         }
     }
 
-    override suspend fun register(user: User): Resource<Auth> {
-        TODO("Not yet implemented")
+    override suspend fun register(register: Register): Resource<Auth> {
+        val response = authService.register(user = register.toRegisterDto())
+        return ResponseToRequest.send(response) {
+            it.toAuth()
+        }
     }
 
 }

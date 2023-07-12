@@ -1,6 +1,5 @@
-package com.redwork.inc.screens.auth.login.components
+package com.redwork.inc.screens.auth.register_client.components
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -8,31 +7,27 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.redwork.inc.R
+import com.redwork.domain.core.Resource
+import com.redwork.inc.R.string.please_wait
 import com.redwork.inc.components.CircularIndicatorMessage
 import com.redwork.inc.components.asString
-import com.redwork.inc.screens.auth.login.LoginViewModel
-import com.redwork.domain.core.Resource
 import com.redwork.inc.navigation.Graph
-import com.redwork.inc.navigation.screen.auth.AuthScreen
+import com.redwork.inc.screens.auth.register_client.RegisterClientViewModel
 
 @Composable
-fun Login(
+fun RegisterClient(
     navController: NavHostController,
-    viewModel: LoginViewModel = hiltViewModel()
+    viewModel: RegisterClientViewModel = hiltViewModel()
 ) {
-
-    when(val response = viewModel.loginResource) {
+    when(val response = viewModel.registerResource) {
         is Resource.Loading -> {
-            CircularIndicatorMessage(message = stringResource(id = R.string.please_wait))
+            CircularIndicatorMessage(message = stringResource(id = please_wait))
         }
         is Resource.Success -> {
             LaunchedEffect(Unit) {
-                response.data.user?.let {
-                    navController.navigate(route = Graph.CLIENT) {
-                        popUpTo(Graph.AUTH) { inclusive = true }
-                    }
-                } ?: navController.navigate(route = AuthScreen.Roles.passPhone("${viewModel.state.country}${viewModel.state.phone}"))
+                navController.navigate(route = Graph.CLIENT) {
+                    popUpTo(Graph.AUTH) { inclusive = true }
+                }
             }
         }
         is Resource.Failure -> {

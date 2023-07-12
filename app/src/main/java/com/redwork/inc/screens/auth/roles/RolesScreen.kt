@@ -9,11 +9,11 @@ import com.redwork.inc.components.DefaultTopBar
 import com.redwork.inc.screens.auth.roles.components.RolesContent
 
 @Composable
-fun RolesScreen(navController: NavHostController) {
+fun RolesScreen(navController: NavHostController, phone: String?) {
     Scaffold(
         topBar = { DefaultTopBar(title = "Selecciona tu rol") }
     ) { paddingValues ->
-        RolesContent(paddingValues, navController)
+        RolesContent(paddingValues, navController, phone)
     }
 }
 
@@ -21,5 +21,5 @@ fun RolesScreen(navController: NavHostController) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun RolesScreenPreview() {
-    RolesScreen(rememberNavController())
+    RolesScreen(rememberNavController(), "+573233649159")
 }

@@ -19,12 +19,13 @@ fun DefaultButton(
     modifier: Modifier,
     text: String,
     style: TextStyle,
+    roundedCornerValue: Int = 16,
     onClick: () -> Unit,
     color: Color = PrimaryLight,
 ) {
     Button(
         modifier = modifier.height(50.dp),
-        shape = RoundedCornerShape(10),
+        shape = RoundedCornerShape(roundedCornerValue),
         onClick = { onClick() },
         colors = ButtonDefaults.buttonColors(containerColor = color),
     ) {

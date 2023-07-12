@@ -2,4 +2,6 @@
 <resources>
     <string name="unexpected_error">Ocurrio un error, por favor vuelvelo a intentar</string>
     <string name="empty_phone_parameter">Por favor, ingresa el telefono para continuar</string>
+    <string name="invalid_email">El correo electrónico no es válido</string>
+    <string name="empty_param">Los campos no pueden estar vacíos</string>
 </resources>

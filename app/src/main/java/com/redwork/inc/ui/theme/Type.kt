@@ -101,6 +101,13 @@ val black15Light = TextStyle(
     fontFamily = poppins_family
 )
 
+val black15 = TextStyle(
+    color = Color.Black,
+    fontSize = 15.sp,
+    fontWeight = FontWeight.Normal,
+    fontFamily = poppins_family
+)
+
 val gray15 = TextStyle(
     color = Color.Gray,
     fontSize = 15.sp,
@@ -111,12 +118,8 @@ val gray15 = TextStyle(
 val gray12Italic = TextStyle(
     color = Color.Gray,
     fontSize = 15.sp,
-    fontStyle = FontStyle.Italic
-)
-
-val black15 = TextStyle(
-    color = Color.Black,
-    fontSize = 15.sp,
+    fontStyle = FontStyle.Italic,
+    fontFamily = poppins_family
 )
 
 val gray20Bold = TextStyle(

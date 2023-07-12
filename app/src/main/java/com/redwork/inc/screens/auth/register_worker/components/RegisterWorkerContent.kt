@@ -1,4 +1,4 @@
-package com.redwork.inc.screens.auth.register.components
+package com.redwork.inc.screens.auth.register_worker.components
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun RegisterContent(paddingValues: PaddingValues) {
+fun RegisterWorkerContent(paddingValues: PaddingValues) {
     Text(
         modifier = Modifier.padding(paddingValues = paddingValues),
         text = "Screen Register"

@@ -17,6 +17,7 @@ import com.redwork.inc.R.string.choose_role_worker
 import com.redwork.inc.R.string.we_verify_your_number
 import com.redwork.inc.components.DefaultButton
 import com.redwork.inc.components.SizedBox
+import com.redwork.inc.navigation.screen.auth.AuthScreen
 import com.redwork.inc.ui.theme.Orange
 import com.redwork.inc.ui.theme.PrimaryLight
 import com.redwork.inc.ui.theme.black15Light
@@ -24,7 +25,7 @@ import com.redwork.inc.ui.theme.black20Bold
 import com.redwork.inc.ui.theme.white20Bold
 
 @Composable
-fun RolesContent(paddingValues: PaddingValues, navController: NavHostController) {
+fun RolesContent(paddingValues: PaddingValues, navController: NavHostController, phone: String?) {
 
     Column(
         modifier = Modifier
@@ -57,7 +58,6 @@ fun RolesContent(paddingValues: PaddingValues, navController: NavHostController)
             style = black15Light
         )
 
-
         Spacer(modifier = Modifier.weight(1f))
 
         DefaultButton(
@@ -67,7 +67,7 @@ fun RolesContent(paddingValues: PaddingValues, navController: NavHostController)
             text = stringResource(id = choose_role_client),
             style = white20Bold,
             color = Orange,
-            onClick = { /*TODO*/ }
+            onClick = { navController.navigate(route = AuthScreen.RegisterClient.passRole("CLIENT", phone ?: "")) }
         )
 
         DefaultButton(
@@ -77,7 +77,7 @@ fun RolesContent(paddingValues: PaddingValues, navController: NavHostController)
             text = stringResource(id = choose_role_worker),
             style = white20Bold,
             color = PrimaryLight,
-            onClick = { /*TODO*/ }
+            onClick = { navController.navigate(route = AuthScreen.RegisterWorker.passRole("WORKER", phone ?: "")) }
         )
         
         Spacer(modifier = Modifier.padding(bottom = 100.dp))
