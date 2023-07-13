@@ -3,6 +3,7 @@ package com.redwork.infrastructure.auth.repository
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.redwork.domain.auth.model.Auth
@@ -22,6 +23,7 @@ class AuthDataStorePreferencesRepository (
 
     companion object {
         private const val AUTH_KEY = "AUTH_KEY"
+        private const val FIRST_KEY = "FIRST_TIME"
     }
 
     override suspend fun saveSession(auth: Auth) {
@@ -32,16 +34,33 @@ class AuthDataStorePreferencesRepository (
         }
     }
 
+    override suspend fun fistTime(status: Boolean) {
+        val dataStoreKey = booleanPreferencesKey(FIRST_KEY)
+        dataStore.edit { pref ->
+            pref[dataStoreKey] = status
+        }
+    }
+
     override fun getSessionData(): Flow<Auth> {
         val dataStoreKey = stringPreferencesKey(AUTH_KEY)
         return dataStore.data.map { pref ->
             if (pref[dataStoreKey] != null) {
-                Log.d("AuthTemporalDataSourceImpl", "getSessionData: ${AuthDto.fromJson(pref[dataStoreKey] ?: "").toAuth()}")
                 AuthDto.fromJson(pref[dataStoreKey] ?: "").toAuth()
             } else {
                 AuthDto().toAuth()
             }
         }
+    }
+
+    override suspend fun getFirstTime(): Boolean {
+        val dataStoreKey = booleanPreferencesKey(FIRST_KEY)
+        return dataStore.data.map {
+            if (it[dataStoreKey] != null) {
+                return@map it[dataStoreKey] ?: false
+            } else {
+                return@map true
+            }
+        }.first()
     }
 
     override suspend fun updateSessionData(user: User) {

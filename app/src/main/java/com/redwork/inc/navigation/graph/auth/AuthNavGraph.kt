@@ -9,10 +9,12 @@ import androidx.navigation.navigation
 import com.redwork.inc.navigation.Graph
 import com.redwork.inc.navigation.screen.auth.AuthScreen
 import com.redwork.inc.screens.auth.login.LoginScreen
+import com.redwork.inc.screens.auth.onboarding.OnBoardingScreen
 import com.redwork.inc.screens.auth.register_client.RegisterClientScreen
-import com.redwork.inc.screens.auth.register_worker.RegisterWorkerScreen
+import com.redwork.inc.screens.auth.register_worker.info_base.RegisterWorkerScreen
 import com.redwork.inc.screens.auth.roles.RolesScreen
 import com.redwork.inc.screens.auth.splash.SplashScreen
+import com.redwork.inc.screens.client.home.ClientHomeScreen
 
 
 fun NavGraphBuilder.AuthNavGraph(navController: NavHostController) {
@@ -28,6 +30,10 @@ fun NavGraphBuilder.AuthNavGraph(navController: NavHostController) {
 
         composable(route = AuthScreen.Login.route) {
             LoginScreen(navController = navController)
+        }
+
+        composable(route = AuthScreen.OnBoarding.route) {
+            OnBoardingScreen(navController = navController)
         }
 
         composable(
@@ -71,9 +77,9 @@ fun NavGraphBuilder.AuthNavGraph(navController: NavHostController) {
             RegisterWorkerScreen(navController = navController)
         }
 
-//        composable(route = Graph.CLIENT) {
-//            ClientHomeScreen()
-//        }
+        composable(route = Graph.CLIENT) {
+            ClientHomeScreen()
+        }
 
     }
 }

@@ -1,6 +1,8 @@
 package com.redwork.inc.screens.auth.login.components
 
+import TogiCodeDialog
 import android.app.Activity
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -17,6 +19,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,12 +35,14 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.redwork.inc.R
 import com.redwork.inc.components.SizedBox
+import com.redwork.inc.components.country_code.data.utils.getDefaultLangCode
+import com.redwork.inc.components.country_code.data.utils.getDefaultPhoneCode
+import com.redwork.inc.components.country_code.data.utils.getLibCountries
 import com.redwork.inc.screens.auth.login.LoginViewModel
-import com.redwork.inc.screens.auth.login.widget.CountryCodePicker
 import com.redwork.inc.screens.auth.login.widget.OTPComposable
-import com.redwork.inc.ui.theme.black20Bold
-import com.redwork.inc.ui.theme.gray20Bold
-import com.redwork.inc.ui.theme.white20Bold
+import com.redwork.inc.ui.theme.black15
+import com.redwork.inc.ui.theme.gray15
+import com.redwork.inc.ui.theme.white15Bold
 
 
 /**
@@ -55,6 +63,19 @@ fun LoginContent(
     val state = viewModel.state
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
+    var phoneCode by rememberSaveable {
+        mutableStateOf(
+            getDefaultPhoneCode(
+                context
+            )
+        )
+    }
+
+    val defaultLang by rememberSaveable {
+        mutableStateOf(
+            getDefaultLangCode(context)
+        )
+    }
 
     Box(
         modifier = Modifier
@@ -76,22 +97,27 @@ fun LoginContent(
             )
             TextField(
                 value = state.phone,
-                textStyle = black20Bold,
+                textStyle = black15,
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
                 onValueChange = { viewModel.onPhoneInput(it) },
                 placeholder = {
                     Text(
                         stringResource(id = R.string.phone_helper),
-                        style = gray20Bold
+                        style = gray15
                     )
                 },
                 leadingIcon = {
                     Row {
-                        CountryCodePicker(pickedCountry = {
-                            viewModel.country = it
-                        })
-                        SizedBox(width = 10)
+                        TogiCodeDialog(
+                            pickedCountry = {
+                                viewModel.onCountryInput(it.countryPhoneCode)
+                            },
+                            defaultSelectedCountry = getLibCountries.single { it.countryCode == defaultLang },
+                            showCountryCode = true,
+                            showFlag = true,
+                            showCountryName = false
+                        )
                     }
                 },
                 colors = TextFieldDefaults.textFieldColors(
@@ -119,9 +145,8 @@ fun LoginContent(
                 onClick = {
                     focusManager.clearFocus()
                     if (state.validationId.isNotEmpty()) {
-                        //authenticationViewModel.verifyOTP(context, home, formFill)
+                        viewModel.verifyOTPAndLogin()
                     } else {
-
                         if (context is Activity) {
                             viewModel.sendOTPToPhoneNumber(context)
                         }
@@ -133,7 +158,7 @@ fun LoginContent(
                         stringResource(id = R.string.verify).uppercase()
                     else
                         stringResource(id = R.string.continue_button).uppercase(),
-                    style = white20Bold,
+                    style = white15Bold,
                     modifier = Modifier.padding(10.dp)
                 )
             }

@@ -17,7 +17,7 @@ fun Register.toRegisterDto(): RegisterDto {
 fun RegisterDto.toRegister(): Register {
     return Register(
         name,
-        lastName,
+        lastname,
         email,
         phone,
         idRole,

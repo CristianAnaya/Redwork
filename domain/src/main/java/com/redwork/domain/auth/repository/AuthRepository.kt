@@ -13,5 +13,7 @@ interface AuthRepository {
         code: String,
         verificationId: String): Flow<Resource<Auth>>
     suspend fun register(register: Register): Resource<Auth>
-    fun getSession(auth: Auth): Flow<Resource<Auth>>
+    fun getSession(): Flow<Auth>
+    suspend fun firstTime(status: Boolean)
+    suspend fun getFirstTime(): Boolean
 }

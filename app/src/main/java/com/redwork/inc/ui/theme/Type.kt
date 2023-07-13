@@ -72,37 +72,139 @@ val white30Bold = TextStyle(
 
 val white20 = TextStyle(
     color = Color.White,
-    fontSize = 20.sp
+    fontSize = 20.sp,
+    fontWeight = FontWeight.Normal,
+    fontFamily = poppins_family
 )
 
 val black20 = TextStyle(
-    color = Color.Black,
-    fontSize = 20.sp
+    color = Black,
+    fontSize = 20.sp,
+    fontWeight = FontWeight.Normal,
+    fontFamily = poppins_family
+
 )
 
 val black20Bold = TextStyle(
-    color = Color.Black,
+    color = Black,
     fontSize = 20.sp,
     fontWeight = FontWeight.Bold,
     fontFamily = poppins_family
 )
 
 val black15Bold = TextStyle(
-    color = Color.Black,
+    color = Black,
     fontSize = 15.sp,
     fontWeight = FontWeight.Bold,
 )
 
+val black20Medium = TextStyle(
+    color = Black,
+    fontSize = 20.sp,
+    fontWeight = FontWeight.Medium,
+    fontFamily = poppins_family
+)
+
+val black15Medium = TextStyle(
+    color = Black,
+    fontSize = 15.sp,
+    fontWeight = FontWeight.Medium,
+)
+
+
+val black13Medium = TextStyle(
+    color = Black,
+    fontSize = 15.sp,
+    fontWeight = FontWeight.Medium,
+    fontFamily = poppins_family
+)
 
 val black15Light = TextStyle(
-    color = Color.Black,
+    color = Black,
     fontSize = 15.sp,
     fontWeight = FontWeight.Light,
     fontFamily = poppins_family
 )
 
+val orange20Bold = TextStyle(
+    color = Orange,
+    fontSize = 20.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = poppins_family
+)
+
+val orange15Bold = TextStyle(
+    color = Orange,
+    fontSize = 15.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = poppins_family
+)
+
+val orange13Bold60 = TextStyle(
+    color = Orange.copy(alpha = 0.6f),
+    fontSize = 13.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = poppins_family
+)
+
+val orange13Bold = TextStyle(
+    color = Orange,
+    fontSize = 13.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = poppins_family
+)
+
+val orange20Light = TextStyle(
+    color = Orange,
+    fontSize = 20.sp,
+    fontWeight = FontWeight.Light,
+    fontFamily = poppins_family
+)
+
+val orange15Light = TextStyle(
+    color = Orange,
+    fontSize = 15.sp,
+    fontWeight = FontWeight.Light,
+    fontFamily = poppins_family
+)
+
+val orange13Light = TextStyle(
+    color = Orange,
+    fontSize = 13.sp,
+    fontWeight = FontWeight.Light,
+    fontFamily = poppins_family
+)
+
+val orange20Normal = TextStyle(
+    color = Orange,
+    fontSize = 20.sp,
+    fontWeight = FontWeight.Light,
+    fontFamily = poppins_family
+)
+
+val orange15Normal = TextStyle(
+    color = Orange,
+    fontSize = 15.sp,
+    fontWeight = FontWeight.Normal,
+    fontFamily = poppins_family
+)
+
+val orange13Normal = TextStyle(
+    color = Orange,
+    fontSize = 13.sp,
+    fontWeight = FontWeight.Normal,
+    fontFamily = poppins_family
+)
+
+val black12 = TextStyle(
+    color = Black,
+    fontSize = 12.sp,
+    fontWeight = FontWeight.Normal,
+    fontFamily = poppins_family
+)
+
 val black15 = TextStyle(
-    color = Color.Black,
+    color = Black,
     fontSize = 15.sp,
     fontWeight = FontWeight.Normal,
     fontFamily = poppins_family
@@ -136,15 +238,25 @@ val white20Bold = TextStyle(
     fontFamily = poppins_family
 )
 
+val white15Bold = TextStyle(
+    color = Color.White,
+    fontSize = 15.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = poppins_family
+)
+
 val white20Bold60 = TextStyle(
     color = Color.White.copy(alpha = 0.6f),
     fontSize = 20.sp,
     fontWeight = FontWeight.Bold,
+    fontFamily = poppins_family
 )
 
 val link15 = TextStyle(
     color = Color.Blue,
     fontSize = 20.sp,
+    fontWeight = FontWeight.Normal,
+    fontFamily = poppins_family
 )
 
 val lightGray15 = TextStyle(
@@ -156,10 +268,13 @@ val lightGray15 = TextStyle(
 val lightGray20 = TextStyle(
     color = Color.LightGray,
     fontSize = 20.sp,
+    fontWeight = FontWeight.Light,
+    fontFamily = poppins_family
 )
 
 val red30Bold = TextStyle(
     color = Color.Red,
     fontSize = 30.sp,
-    fontWeight = FontWeight.Bold
+    fontWeight = FontWeight.Bold,
+    fontFamily = poppins_family
 )

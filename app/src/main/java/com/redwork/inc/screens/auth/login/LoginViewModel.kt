@@ -28,28 +28,27 @@ class LoginViewModel @Inject constructor(private val authUseCase: AuthUseCase) :
     var loginResource by mutableStateOf<Resource<Auth>?>(null)
         private set
 
-    var country: CCPCountry = getLibraryMasterCountriesEnglish().first()
-
     fun sendOTPToPhoneNumber(context: Activity) = viewModelScope.launch {
         otpResource = Resource.Loading
-        authUseCase.getOTP(state.phone, getCountryCode(), context).collect {
+        authUseCase.getOTP(state.phone, state.country, context).collect {
             otpResource = it
         }
     }
 
     fun verifyOTPAndLogin() = viewModelScope.launch {
         loginResource = Resource.Loading
-        authUseCase.login(" +57${state.phone}", state.otp, state.validationId).collect {
-            Log.d("LoginViewModel", "verifyOTPAndLogin: $it")
+        authUseCase.login("${state.country}${state.phone}", state.otp, state.validationId).collect {
             loginResource = it
         }
     }
 
-    /**
-     * Returns a non-nullable country code
-     */
-    private fun getCountryCode(): String {
-        return "+${country.phoneCode}"
+    fun getPhone(): String {
+        Log.d("LoginViewModel", "getPhone: ${state.country}${state.phone}")
+        return "${state.country}${state.phone}"
+    }
+
+    fun onCountryInput(value: String) {
+        state = state.copy(country = value)
     }
 
     fun onValidationId(value: String) {

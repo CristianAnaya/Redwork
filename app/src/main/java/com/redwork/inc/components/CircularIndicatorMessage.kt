@@ -56,7 +56,7 @@ fun CircularIndicatorMessage(message: String) {
             colors = CardDefaults.cardColors(
                 containerColor = Color.White
             ),
-            modifier = Modifier.width(200.dp),
+            modifier = Modifier.width(250.dp),
             elevation = CardDefaults.cardElevation(
                 defaultElevation = 10.dp
             )

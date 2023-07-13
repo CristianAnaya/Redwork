@@ -1,6 +1,7 @@
 package com.redwork.infrastructure.auth.repository
 
 import android.app.Activity
+import android.util.Log
 import com.redwork.domain.auth.model.Auth
 import com.redwork.domain.auth.model.Register
 import com.redwork.domain.auth.repository.AuthRepository
@@ -69,13 +70,17 @@ class AuthProxy(
             }
             registerResult
         } catch (e: Exception) {
+            Log.d("AuthProxy", "register: ${e.message}")
             Resource.Failure(UiText.StringResource(there_is_not_network_connection))
         }
     }
 
-
-    override fun getSession(auth: Auth): Flow<Resource<Auth>> {
-        TODO("Not yet implemented")
+    override fun getSession(): Flow<Auth> {
+        return temporalRepository.getSessionData()
     }
+
+    override suspend fun firstTime(status: Boolean) = temporalRepository.fistTime(status)
+
+    override suspend fun getFirstTime(): Boolean = temporalRepository.getFirstTime()
 
 }

@@ -32,7 +32,7 @@ fun Login(
                     navController.navigate(route = Graph.CLIENT) {
                         popUpTo(Graph.AUTH) { inclusive = true }
                     }
-                } ?: navController.navigate(route = AuthScreen.Roles.passPhone("${viewModel.state.country}${viewModel.state.phone}"))
+                } ?: navController.navigate(route = AuthScreen.Roles.passPhone(viewModel.getPhone()))
             }
         }
         is Resource.Failure -> {
