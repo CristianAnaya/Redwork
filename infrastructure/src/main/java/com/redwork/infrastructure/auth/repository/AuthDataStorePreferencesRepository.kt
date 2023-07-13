@@ -1,6 +1,5 @@
 package com.redwork.infrastructure.auth.repository
 
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -10,7 +9,7 @@ import com.redwork.domain.auth.model.Auth
 import com.redwork.domain.auth.model.User
 import com.redwork.infrastructure.auth.mapper.toAuth
 import com.redwork.infrastructure.auth.mapper.toAuthDto
-import com.redwork.infrastructure.auth.network.dto.AuthDto
+import com.redwork.infrastructure.auth.httpclient.dto.AuthDto
 import com.redwork.infrastructure.auth.repository.contracts.AuthTemporalRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first

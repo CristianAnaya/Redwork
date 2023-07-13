@@ -1,7 +1,7 @@
 package com.redwork.infrastructure.user.network.dto
 
 import com.google.gson.annotations.SerializedName
-import com.redwork.infrastructure.auth.network.dto.RoleDto
+import com.redwork.infrastructure.auth.httpclient.dto.RoleDto
 
 data class UserDto(
     @SerializedName("id") val id: String? = null,

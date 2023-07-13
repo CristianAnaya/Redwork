@@ -1,7 +1,7 @@
 package com.redwork.infrastructure.auth.mapper
 
 import com.redwork.domain.auth.model.Auth
-import com.redwork.infrastructure.auth.network.dto.AuthDto
+import com.redwork.infrastructure.auth.httpclient.dto.AuthDto
 import com.redwork.infrastructure.user.mapper.toUser
 import com.redwork.infrastructure.user.mapper.toUserDto
 

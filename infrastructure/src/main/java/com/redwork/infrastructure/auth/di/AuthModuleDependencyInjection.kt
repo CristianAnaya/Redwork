@@ -3,7 +3,7 @@ package com.redwork.infrastructure.auth.di
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.redwork.domain.auth.repository.AuthRepository
-import com.redwork.infrastructure.auth.network.service.AuthService
+import com.redwork.infrastructure.auth.httpclient.service.AuthService
 import com.redwork.infrastructure.auth.repository.AuthDataStorePreferencesRepository
 import com.redwork.infrastructure.auth.repository.AuthFirebaseRepository
 import com.redwork.infrastructure.auth.repository.AuthProxy

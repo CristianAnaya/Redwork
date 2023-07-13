@@ -1,4 +1,4 @@
-package com.redwork.infrastructure.auth.network.dto
+package com.redwork.infrastructure.auth.httpclient.dto
 
 import com.google.gson.Gson
 import com.redwork.infrastructure.user.network.dto.UserDto

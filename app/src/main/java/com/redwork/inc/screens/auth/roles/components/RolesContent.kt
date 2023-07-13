@@ -101,7 +101,7 @@ fun RolesContent(
                         .clip(RoundedCornerShape(20.dp))
                         .clickable {
                             navController.navigate(
-                                route = AuthScreen.RegisterClient.passRole(
+                                route = AuthScreen.RegisterWorker.passRole(
                                     "WORKER",
                                     phone ?: ""
                                 )

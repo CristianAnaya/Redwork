@@ -1,0 +1,24 @@
+package com.redwork.infrastructure.category.mapper
+
+import com.redwork.domain.category.model.Category
+import com.redwork.infrastructure.category.httpclient.dto.CategoryDto
+import com.redwork.infrastructure.service.mapper.toService
+import com.redwork.infrastructure.service.mapper.toServiceDto
+
+fun Category.toCategoryDto(): CategoryDto {
+    return CategoryDto(
+        id,
+        name,
+        route,
+        service.map { it.toServiceDto() }
+    )
+}
+
+fun CategoryDto.toCategory(): Category {
+    return Category(
+        id,
+        name,
+        route,
+        service.map { it.toService() }
+    )
+}

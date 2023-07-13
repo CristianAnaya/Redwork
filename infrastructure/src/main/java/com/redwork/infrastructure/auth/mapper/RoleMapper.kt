@@ -1,7 +1,7 @@
 package com.redwork.infrastructure.auth.mapper
 
 import com.redwork.domain.auth.model.Role
-import com.redwork.infrastructure.auth.network.dto.RoleDto
+import com.redwork.infrastructure.auth.httpclient.dto.RoleDto
 
 
 fun RoleDto.toRol(): Role {

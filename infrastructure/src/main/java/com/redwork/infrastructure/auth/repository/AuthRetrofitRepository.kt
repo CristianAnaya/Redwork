@@ -6,7 +6,7 @@ import com.redwork.domain.auth.model.Register
 import com.redwork.domain.core.Resource
 import com.redwork.infrastructure.auth.mapper.toAuth
 import com.redwork.infrastructure.auth.mapper.toRegisterDto
-import com.redwork.infrastructure.auth.network.service.AuthService
+import com.redwork.infrastructure.auth.httpclient.service.AuthService
 import com.redwork.infrastructure.auth.repository.contracts.AuthRemoteRepository
 import com.redwork.infrastructure.core.http_client.commons.ResponseToRequest
 

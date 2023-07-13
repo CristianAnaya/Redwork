@@ -1,9 +1,7 @@
-package com.redwork.infrastructure.auth.network.service
+package com.redwork.infrastructure.auth.httpclient.service
 
-import com.redwork.domain.auth.model.Register
-import com.redwork.infrastructure.auth.network.dto.AuthDto
-import com.redwork.infrastructure.auth.network.dto.RegisterDto
-import com.redwork.infrastructure.user.network.dto.UserDto
+import com.redwork.infrastructure.auth.httpclient.dto.AuthDto
+import com.redwork.infrastructure.auth.httpclient.dto.RegisterDto
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Field

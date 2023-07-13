@@ -1,4 +1,4 @@
-package com.redwork.infrastructure.auth.network.dto
+package com.redwork.infrastructure.auth.httpclient.dto
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

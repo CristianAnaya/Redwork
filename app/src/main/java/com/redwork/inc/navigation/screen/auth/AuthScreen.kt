@@ -15,4 +15,6 @@ sealed class AuthScreen(val route: String) {
     object RegisterWorker: AuthScreen("auth/register_worker/{role}/{phone}") {
         fun passRole(role: String, phone: String) = "auth/register_worker/$role/$phone"
     }
+    object CompleteInfo: AuthScreen("auth/register_worker/complete_info")
+    object SelectedCategory: AuthScreen("auth/register_worker/selected_category")
 }
