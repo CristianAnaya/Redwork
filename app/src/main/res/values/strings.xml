@@ -8,6 +8,7 @@
     <string name="ok">Esta bien</string>
     <string name="continue_button">Continuar</string>
     <string name="save_information">Guardar</string>
+    <string name="saving">guardando...</string>
     <string name="please_wait">Por favor espere un momento…</string>
     <string name="web_client_id">89738809767-q681br67u8d3ii6jfa63if7mi0rpuhs0.apps.googleusercontent.com</string>
 
@@ -517,5 +518,7 @@
     <string name="category">Categorías</string>
     <string name="location">Ubicación</string>
     <string name="enter_to_redwork">Finalizar y entrar a redwork</string>
+    <string name="loading">Cargando...</string>
+    <string name="selecte_category">Seleccionar categorias</string>
 
 </resources>

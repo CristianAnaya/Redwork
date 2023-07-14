@@ -1,5 +1,6 @@
 package com.redwork.inc.screens.auth.register_worker.info_base
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -8,6 +9,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.redwork.domain.auth.model.Auth
 import com.redwork.domain.auth.usecase.AuthUseCase
+import com.redwork.domain.category.model.Category
+import com.redwork.domain.category.usecase.CategoryUseCase
 import com.redwork.domain.core.Resource
 import com.redwork.inc.screens.auth.register_worker.info_base.mapper.toRegister
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,6 +30,7 @@ class RegisterWorkerViewModel @Inject constructor(
         private set
 
     var registerResource by mutableStateOf<Resource<Auth>?>(null)
+        private set
 
     init {
         state.role.add(role ?: "")

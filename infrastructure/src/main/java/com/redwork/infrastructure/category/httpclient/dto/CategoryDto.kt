@@ -7,5 +7,5 @@ data class CategoryDto(
     val id: Int,
     val name: String,
     val route: String,
-    val service: List<ServiceDto>
+    val services: List<ServiceDto>
 ): Serializable

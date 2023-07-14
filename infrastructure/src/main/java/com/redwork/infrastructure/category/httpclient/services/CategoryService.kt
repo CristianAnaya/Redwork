@@ -9,7 +9,7 @@ interface CategoryService {
     @GET("category")
     suspend fun getCategories(): Response<List<CategoryDto>>
 
-    @GET("category/service")
+    @GET("category/services")
     suspend fun getCategoriesWithServices(): Response<List<CategoryDto>>
 
 }

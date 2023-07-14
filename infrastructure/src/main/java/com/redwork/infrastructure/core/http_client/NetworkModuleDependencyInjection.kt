@@ -1,5 +1,6 @@
 package com.redwork.infrastructure.core.http_client
 
+import android.util.Log
 import com.redwork.infrastructure.auth.repository.contracts.AuthTemporalRepository
 import com.redwork.infrastructure.core.http_client.commons.Config.BASE_URL
 import dagger.Module
@@ -23,7 +24,6 @@ object NetworkModuleDependencyInjection {
         val token = runBlocking {
             datastore.getSessionData().first().token
         }
-
         val newRequest = it.request().newBuilder().addHeader("Authorization", token ?: "").build()
         it.proceed(newRequest)
     }.build()

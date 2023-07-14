@@ -36,9 +36,7 @@ class SplashViewModel @Inject constructor(private val authUseCase: AuthUseCase):
     }
 
     private fun getFirstTime() = viewModelScope.launch {
-        Log.d("SplashViewModel", "getFirstTime: 1")
         val isFirstTime = authUseCase.getFirstTime.invoke()
-        Log.d("SplashViewModel", "getFirstTime: 2 $isFirstTime")
         _isFirstTime.value = isFirstTime
     }
 }

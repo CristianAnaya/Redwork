@@ -33,7 +33,7 @@ import com.redwork.inc.R.string.name
 import com.redwork.inc.R.string.name_helper
 import com.redwork.inc.components.DefaultButton
 import com.redwork.inc.components.SizedBox
-import com.redwork.inc.screens.auth.register_client.RegisterClientViewModel
+import com.redwork.inc.screens.auth.register_worker.info_base.RegisterWorkerViewModel
 import com.redwork.inc.ui.theme.black15
 import com.redwork.inc.ui.theme.gray12Italic
 import com.redwork.inc.ui.theme.gray15
@@ -42,7 +42,7 @@ import com.redwork.inc.ui.theme.white20Bold
 @Composable
 fun RegisterWorkerContent(
     paddingValues: PaddingValues,
-    viewModel: RegisterClientViewModel = hiltViewModel()
+    viewModel: RegisterWorkerViewModel = hiltViewModel()
 ) {
     val focusManager = LocalFocusManager.current
     val state = viewModel.state

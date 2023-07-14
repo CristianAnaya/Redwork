@@ -1,12 +1,10 @@
-package com.redwork.domain.category.repository
+package com.redwork.infrastructure.category.repository.contracts
 
 import com.redwork.domain.category.model.Category
 import com.redwork.domain.core.Resource
 import kotlinx.coroutines.flow.Flow
 
-interface CategoryRepository {
-    fun getCategories(): Flow<Resource<List<Category>>>
-    fun getCategoriesWithServices(): Flow<Resource<List<Category>>>
+interface CategoryTemporalRepository {
     fun getSelectedCategories(): Flow<List<Category>>
     suspend fun saveSelectedCategories(categories: List<Category>): Resource<Unit>
 }

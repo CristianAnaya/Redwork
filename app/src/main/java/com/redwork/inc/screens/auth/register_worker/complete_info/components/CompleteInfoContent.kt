@@ -29,11 +29,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.redwork.inc.R
+import com.redwork.inc.R.drawable.icon_describe_experience
+import com.redwork.inc.R.string.describe_your_experience
+import com.redwork.inc.R.string.hello_helper
+import com.redwork.inc.R.string.we_want_know_to_what_dedication
 import com.redwork.inc.components.DefaultButton
 import com.redwork.inc.components.SizedBox
 import com.redwork.inc.navigation.screen.auth.AuthScreen
+import com.redwork.inc.screens.auth.register_worker.complete_info.CompleteInfoViewModel
 import com.redwork.inc.ui.theme.black13Medium
 import com.redwork.inc.ui.theme.black15
 import com.redwork.inc.ui.theme.orange13Bold60
@@ -44,9 +50,10 @@ import com.redwork.inc.ui.theme.white20Bold
 @Composable
 fun CompleteInfoContent(
     paddingValues: PaddingValues,
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    viewModel: CompleteInfoViewModel = hiltViewModel()
 ) {
-
+    val state = viewModel.state
     val focusManager = LocalFocusManager.current
 
     Column(
@@ -66,7 +73,7 @@ fun CompleteInfoContent(
         ) {
 
             Text(
-                text = stringResource(id = R.string.hello_helper),
+                text = stringResource(id = hello_helper),
                 style = orange15Normal
             )
 
@@ -87,7 +94,7 @@ fun CompleteInfoContent(
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
-                text = stringResource(id = R.string.we_want_know_to_what_dedication),
+                text = stringResource(id = we_want_know_to_what_dedication),
                 style = black15
             )
 
@@ -100,13 +107,13 @@ fun CompleteInfoContent(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 TextField(
-                    value = "",
+                    value = state.describeExperience,
                     textStyle = black13Medium,
                     modifier = Modifier.weight(1f),
-                    onValueChange = { },
+                    onValueChange = { viewModel.onDescribeExperience(it) },
                     placeholder = {
                         Text(
-                            stringResource(id = R.string.describe_your_experience),
+                            stringResource(id = describe_your_experience),
                             style = orange13Bold60
                         )
                     },
@@ -128,7 +135,7 @@ fun CompleteInfoContent(
                     modifier = Modifier
                         .padding(10.dp)
                         .size(20.dp),
-                    painter = painterResource(id = R.drawable.icon_describe_experience),
+                    painter = painterResource(id = icon_describe_experience),
                     contentDescription = "",
                 )
             }
@@ -138,16 +145,16 @@ fun CompleteInfoContent(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.White),
+                    .background(Color.White)
+                    .clickable { navHostController.navigate(route = AuthScreen.SelectedCategory.route) },
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 TextField(
                     value = "",
                     textStyle = black13Medium,
                     modifier = Modifier
-                        .weight(1f)
-                        .clickable { navHostController.navigate(route = AuthScreen.SelectedCategory.route) },
-                    singleLine = true,
+                        .weight(1f),
+                    enabled = false,
                     onValueChange = { },
                     placeholder = {
                         Text(
@@ -186,10 +193,10 @@ fun CompleteInfoContent(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 TextField(
-                    value = "",
+                    value = state.address,
                     textStyle = black13Medium,
                     modifier = Modifier.weight(1f),
-                    singleLine = true,
+                    enabled = false,
                     onValueChange = { },
                     placeholder = {
                         Text(
