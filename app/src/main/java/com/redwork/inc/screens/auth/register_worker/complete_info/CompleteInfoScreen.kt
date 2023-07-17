@@ -21,7 +21,7 @@ fun CompleteInfoScreen(
     ) {
         CompleteInfoContent(
             paddingValues = it,
-            navHostController = navController
+            navController = navController
         )
     }
 }

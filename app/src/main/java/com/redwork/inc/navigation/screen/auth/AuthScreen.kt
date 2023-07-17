@@ -17,4 +17,5 @@ sealed class AuthScreen(val route: String) {
     }
     object CompleteInfo: AuthScreen("auth/register_worker/complete_info")
     object SelectedCategory: AuthScreen("auth/register_worker/selected_category")
+    object SelectAddress: AuthScreen("auth/register_worker/select_address")
 }

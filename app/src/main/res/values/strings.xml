@@ -1,4 +1,7 @@
 <resources>
+
+    <string name="API_KEY_MAP">AIzaSyCSD0C3bcDvBqfyoOW-gcCJ7M0gU2G1GTE</string>
+
     <string name="app_name">Redwork</string>
     <string name="enter_phone_number">Ingresa tu número de telefono para continuar</string>
     <string name="phone_helper">Tu número del telefono</string>
@@ -520,5 +523,6 @@
     <string name="enter_to_redwork">Finalizar y entrar a redwork</string>
     <string name="loading">Cargando...</string>
     <string name="selecte_category">Seleccionar categorias</string>
+    <string name="select_location">Seleccionar ubicación</string>
 
 </resources>

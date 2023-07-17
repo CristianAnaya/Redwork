@@ -13,6 +13,7 @@ import com.redwork.inc.screens.auth.onboarding.OnBoardingScreen
 import com.redwork.inc.screens.auth.register_client.RegisterClientScreen
 import com.redwork.inc.screens.auth.register_worker.complete_info.CompleteInfoScreen
 import com.redwork.inc.screens.auth.register_worker.info_base.RegisterWorkerScreen
+import com.redwork.inc.screens.auth.register_worker.select_address.SelectAddressScreen
 import com.redwork.inc.screens.auth.register_worker.selected_category.SelectedCategoryScreen
 import com.redwork.inc.screens.auth.roles.RolesScreen
 import com.redwork.inc.screens.auth.splash.SplashScreen
@@ -85,6 +86,10 @@ fun NavGraphBuilder.AuthNavGraph(navController: NavHostController) {
 
         composable(route = AuthScreen.SelectedCategory.route) {
             SelectedCategoryScreen(navController = navController)
+        }
+
+        composable(route = AuthScreen.SelectAddress.route) {
+            SelectAddressScreen(navController = navController)
         }
 
         composable(route = Graph.CLIENT) {

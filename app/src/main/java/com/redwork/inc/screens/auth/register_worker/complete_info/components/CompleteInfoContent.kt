@@ -1,5 +1,12 @@
 package com.redwork.inc.screens.auth.register_worker.complete_info.components
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,15 +27,21 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.redwork.inc.R
@@ -50,9 +63,25 @@ import com.redwork.inc.ui.theme.white20Bold
 @Composable
 fun CompleteInfoContent(
     paddingValues: PaddingValues,
-    navHostController: NavHostController,
+    navController: NavHostController,
     viewModel: CompleteInfoViewModel = hiltViewModel()
 ) {
+
+    var locationPermissionGranted by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+
+    val requestPermissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            locationPermissionGranted = true
+            navController.navigate(route = AuthScreen.SelectAddress.route)
+        } else {
+
+            Toast.makeText(context, "Permission Denied", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     val state = viewModel.state
     val focusManager = LocalFocusManager.current
 
@@ -130,7 +159,6 @@ fun CompleteInfoContent(
                     )
                 )
 
-
                 Image(
                     modifier = Modifier
                         .padding(10.dp)
@@ -146,7 +174,9 @@ fun CompleteInfoContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color.White)
-                    .clickable { navHostController.navigate(route = AuthScreen.SelectedCategory.route) },
+                    .clickable {
+                        navController.navigate(route = AuthScreen.SelectedCategory.route)
+                    },
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 TextField(
@@ -189,7 +219,14 @@ fun CompleteInfoContent(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.White),
+                    .background(Color.White)
+                    .clickable {
+                        if (hasLocationPermission(context)) {
+                            navController.navigate(route = AuthScreen.SelectAddress.route)
+                        } else {
+                            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+                        }
+                    },
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 TextField(
@@ -225,8 +262,6 @@ fun CompleteInfoContent(
                     contentDescription = "",
                 )
             }
-
-
         }
 
         Spacer(modifier = Modifier.weight(1f))
@@ -241,4 +276,10 @@ fun CompleteInfoContent(
             onClick = { /*TODO*/ }
         )
     }
+}
+
+fun hasLocationPermission(context: Context): Boolean {
+    val locationPermission = Manifest.permission.ACCESS_FINE_LOCATION
+    val permissionState = ContextCompat.checkSelfPermission(context, locationPermission)
+    return permissionState == PackageManager.PERMISSION_GRANTED
 }
