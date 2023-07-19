@@ -4,6 +4,7 @@ import android.app.Activity
 import android.util.Log
 import com.redwork.domain.auth.model.Auth
 import com.redwork.domain.auth.model.Register
+import com.redwork.domain.auth.model.RegisterInfo
 import com.redwork.domain.auth.repository.AuthRepository
 import com.redwork.domain.core.Resource
 import com.redwork.domain.core.UiText
@@ -12,8 +13,10 @@ import com.redwork.infrastructure.R.string.unexpected_error_login
 import com.redwork.infrastructure.auth.repository.contracts.AuthDataSourceRepository
 import com.redwork.infrastructure.auth.repository.contracts.AuthRemoteRepository
 import com.redwork.infrastructure.auth.repository.contracts.AuthTemporalRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 
 class AuthProxy(
     private val dataSourceRepository: AuthDataSourceRepository,
@@ -72,6 +75,22 @@ class AuthProxy(
         } catch (e: Exception) {
             Log.d("AuthProxy", "register: ${e.message}")
             Resource.Failure(UiText.StringResource(there_is_not_network_connection))
+        }
+    }
+
+    override suspend fun saveInfoToWorker(id: String, registerInfo: RegisterInfo): Resource<Auth> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val registerResult = remoteRepository.saveInfoToWorker(id, registerInfo)
+                if (registerResult is Resource.Success) {
+                    val auth = registerResult.data
+                    temporalRepository.saveSession(auth)
+                }
+                registerResult
+            } catch (e: Exception) {
+                Log.d("AuthProxy", "saveInfoToWorker: ${e.message}")
+                Resource.Failure(UiText.StringResource(there_is_not_network_connection))
+            }
         }
     }
 

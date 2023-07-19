@@ -3,6 +3,7 @@ package com.redwork.domain.auth.repository
 import android.app.Activity
 import com.redwork.domain.auth.model.Auth
 import com.redwork.domain.auth.model.Register
+import com.redwork.domain.auth.model.RegisterInfo
 import com.redwork.domain.core.Resource
 import kotlinx.coroutines.flow.Flow
 
@@ -13,6 +14,7 @@ interface AuthRepository {
         code: String,
         verificationId: String): Flow<Resource<Auth>>
     suspend fun register(register: Register): Resource<Auth>
+    suspend fun saveInfoToWorker(id: String, registerInfo: RegisterInfo): Resource<Auth>
     fun getSession(): Flow<Auth>
     suspend fun firstTime(status: Boolean)
     suspend fun getFirstTime(): Boolean

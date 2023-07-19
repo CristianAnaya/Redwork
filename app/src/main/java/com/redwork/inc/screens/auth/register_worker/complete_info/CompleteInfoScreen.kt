@@ -14,7 +14,9 @@ fun CompleteInfoScreen(
     navController: NavHostController,
     viewModel: CompleteInfoViewModel = hiltViewModel()
 ) {
+    viewModel.getSessionData()
     viewModel.getSelectedCategories()
+    viewModel.getSelectedAddress()
 
     Scaffold(
         containerColor = Color.White

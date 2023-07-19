@@ -83,6 +83,11 @@ fun CompleteInfoContent(
     }
 
     val state = viewModel.state
+    val categoryNames = if (state.selectedCategories.isNotEmpty()) {
+        state.selectedCategories.joinToString(separator = ", ") { it.name }
+    } else {
+        ""
+    }
     val focusManager = LocalFocusManager.current
 
     Column(
@@ -109,7 +114,7 @@ fun CompleteInfoContent(
             SizedBox(width = 3)
 
             Text(
-                text = "Cristian Anaya",
+                text = state.name,
                 style = orange15Bold
             )
         }
@@ -180,7 +185,7 @@ fun CompleteInfoContent(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 TextField(
-                    value = "",
+                    value = categoryNames,
                     textStyle = black13Medium,
                     modifier = Modifier
                         .weight(1f),
@@ -273,7 +278,7 @@ fun CompleteInfoContent(
             text = stringResource(id = R.string.enter_to_redwork),
             style = white20Bold,
             roundedCornerValue = 50,
-            onClick = { /*TODO*/ }
+            onClick = { viewModel.saveInfo() }
         )
     }
 }

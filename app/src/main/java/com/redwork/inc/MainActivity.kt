@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.google.android.libraries.places.api.Places
 import com.redwork.inc.navigation.graph.root.RootNavGraph
 import com.redwork.inc.ui.theme.RedworkTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +22,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Places.initialize(applicationContext, "AIzaSyCSD0C3bcDvBqfyoOW-gcCJ7M0gU2G1GTE")
+
         setContent {
             RedworkTheme {
                 // A surface container using the 'background' color from the theme

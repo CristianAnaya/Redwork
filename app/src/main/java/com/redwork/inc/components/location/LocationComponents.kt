@@ -1,32 +1,31 @@
 package com.redwork.inc.components.location
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.pm.PackageManager
 import android.location.Geocoder
+import android.location.Location
 import android.os.Looper
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import java.io.IOException
 import java.util.Locale
 import java.util.concurrent.TimeUnit
-import android.Manifest
-import android.app.Activity
-import android.content.pm.PackageManager
-import android.location.Location
-import androidx.compose.runtime.setValue
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -128,15 +127,44 @@ suspend fun getLastLocation(context: Context, fusedLocationProviderClient: Fused
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-
+            continuation.resume(null)
             return@suspendCoroutine
         }
         fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
-            continuation.resume(location)
+            if (location != null) {
+                continuation.resume(location)
+            } else {
+
+                val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 100)
+                    .setWaitForAccurateLocation(false)
+                    .setMinUpdateIntervalMillis(1000)
+                    .setMaxUpdateDelayMillis(100)
+                    .build()
+
+                val locationCallback = object : LocationCallback() {
+                    override fun onLocationResult(locationResult: LocationResult) {
+                        super.onLocationResult(locationResult)
+                        if (locationResult.locations.isNotEmpty()) {
+                            val newLocation = locationResult.locations.first()
+                            continuation.resume(newLocation)
+                            fusedLocationProviderClient.removeLocationUpdates(this)
+                        }
+                    }
+                }
+
+                fusedLocationProviderClient.requestLocationUpdates(
+                    locationRequest,
+                    locationCallback,
+                    Looper.getMainLooper()
+                )
+            }
         }.addOnFailureListener { exception ->
+            Log.d("TAG", "getLastLocation: ${exception.message}")
             continuation.resumeWithException(exception)
         }
     }
+
+
 
 
 fun askPermissions(context: Context, requestCode: Int, vararg permissions: String) {
