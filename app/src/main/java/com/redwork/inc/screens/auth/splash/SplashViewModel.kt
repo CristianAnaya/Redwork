@@ -31,6 +31,7 @@ class SplashViewModel @Inject constructor(private val authUseCase: AuthUseCase):
 
     fun getSessionData() = viewModelScope.launch {
         authUseCase.getSession().collect { data ->
+            Log.d("SplashViewModel", "getSessionData: ${data.token}, ${data.user}")
             sessionResource = Resource.Success(data)
         }
     }

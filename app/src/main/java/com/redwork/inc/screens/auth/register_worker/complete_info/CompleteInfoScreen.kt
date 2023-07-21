@@ -8,6 +8,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.redwork.inc.screens.auth.register_worker.complete_info.components.CompleteInfoContent
+import com.redwork.inc.screens.auth.register_worker.complete_info.components.SaveInfoWorker
 
 @Composable
 fun CompleteInfoScreen(
@@ -26,6 +27,8 @@ fun CompleteInfoScreen(
             navController = navController
         )
     }
+    
+    SaveInfoWorker(navController = navController)
 }
 
 @Preview(showBackground = true, showSystemUi = true)

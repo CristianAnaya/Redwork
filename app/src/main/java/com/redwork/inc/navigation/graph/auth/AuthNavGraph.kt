@@ -24,7 +24,7 @@ import com.redwork.inc.screens.client.home.ClientHomeScreen
 fun NavGraphBuilder.AuthNavGraph(navController: NavHostController) {
     navigation(
         route = Graph.AUTH,
-        startDestination = AuthScreen.CompleteInfo.route
+        startDestination = AuthScreen.Splash.route
     ) {
         composable(
             route = AuthScreen.Splash.route

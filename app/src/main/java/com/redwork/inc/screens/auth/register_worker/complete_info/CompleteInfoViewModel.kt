@@ -24,7 +24,7 @@ class CompleteInfoViewModel @Inject constructor(
     private val categoryUseCase: CategoryUseCase,
     private val addressUseCase: AddressUseCase,
     private val authUseCase: AuthUseCase
-) : ViewModel() {
+): ViewModel() {
 
     var state by mutableStateOf(CompleteInfoState())
         private set
