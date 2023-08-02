@@ -13,7 +13,6 @@ import com.redwork.domain.core.Resource
 
 @Composable
 fun GetOTP(viewModel: LoginViewModel = hiltViewModel()) {
-
     when(val response = viewModel.otpResource) {
         is Resource.Loading -> {
             CircularIndicatorMessage(message = stringResource(id = please_wait))

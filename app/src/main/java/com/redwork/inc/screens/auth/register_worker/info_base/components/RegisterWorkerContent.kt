@@ -12,6 +12,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,8 +21,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.rememberNavController
+import com.redwork.domain.auth.usecase.AuthUseCase
 import com.redwork.inc.R
 import com.redwork.inc.R.string.account_created
 import com.redwork.inc.R.string.account_created_helper
@@ -33,6 +37,7 @@ import com.redwork.inc.R.string.name
 import com.redwork.inc.R.string.name_helper
 import com.redwork.inc.components.DefaultButton
 import com.redwork.inc.components.SizedBox
+import com.redwork.inc.screens.auth.register_worker.info_base.RegisterWorkerScreen
 import com.redwork.inc.screens.auth.register_worker.info_base.RegisterWorkerViewModel
 import com.redwork.inc.ui.theme.black15
 import com.redwork.inc.ui.theme.gray12Italic
@@ -189,4 +194,13 @@ fun RegisterWorkerContent(
             }
         }
     }
+}
+
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun RegisterWorkerContentPreview() {
+    val viewModel: RegisterWorkerViewModel = hiltViewModel()
+
+    RegisterWorkerContent(PaddingValues(), viewModel)
 }

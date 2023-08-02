@@ -43,7 +43,6 @@ class LoginViewModel @Inject constructor(private val authUseCase: AuthUseCase) :
     }
 
     fun getPhone(): String {
-        Log.d("LoginViewModel", "getPhone: ${state.country}${state.phone}")
         return "${state.country}${state.phone}"
     }
 
