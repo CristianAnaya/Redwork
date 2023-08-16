@@ -8,6 +8,7 @@ data class Role(
     val id: String,
     val name: String,
 ) {
+    // COMMENT
     fun toJson(): String = Gson().toJson(Role(
         id,
         name,
