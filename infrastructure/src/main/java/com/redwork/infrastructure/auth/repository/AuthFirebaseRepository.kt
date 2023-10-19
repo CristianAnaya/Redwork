@@ -59,6 +59,7 @@ class AuthFirebaseRepository: AuthDataSourceRepository {
                     }
 
                     override fun onVerificationFailed(exception: FirebaseException) {
+                        Log.d("TAG", "onVerificationFailed: ${exception.message}")
                         trySend(Resource.Failure(UiText.StringResource(failed_get_otp)))
                         close()
                     }

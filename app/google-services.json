@@ -40,10 +40,10 @@
               "client_type": 3
             },
             {
-              "client_id": "89738809767-3h287cv82tt2q225qnrdjv4s9okq2562.apps.googleusercontent.com",
+              "client_id": "89738809767-2p25m942un4uki8t377gd89haq8svt3c.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.inc.redwork"
+                "bundle_id": "com.redwork.inc"
               }
             }
           ]
