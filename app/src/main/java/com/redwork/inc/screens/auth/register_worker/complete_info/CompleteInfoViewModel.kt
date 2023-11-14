@@ -52,7 +52,7 @@ class CompleteInfoViewModel @Inject constructor(
 
     fun getSelectedAddress() = viewModelScope.launch {
         addressUseCase.getAddress().collect {
-            state = state.copy(address = it.address, latitude = it.latitude, longitude = it.longitude)
+            state = state.copy(address = it?.address ?: "", latitude = it?.latitude ?: 0.0, longitude = it?.longitude ?: 0.0)
         }
     }
 

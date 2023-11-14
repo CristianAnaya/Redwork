@@ -1,5 +1,6 @@
 package com.redwork.infrastructure.category.repository
 
+import android.util.Log
 import com.redwork.domain.category.model.Category
 import com.redwork.domain.category.repository.CategoryRepository
 import com.redwork.domain.core.Resource
@@ -25,14 +26,17 @@ class CategoryProxy(
                         emit(Resource.Success(categories))
                     }
                     is Resource.Failure -> {
+                        Log.d("CategoryProxy", "getCategories 1: $message")
                         emit(Resource.Failure(message))
                     }
                     else -> {
+                        Log.d("CategoryProxy", "getCategories 2:")
                         emit(Resource.Failure(UiText.StringResource(unexpected_error)))
                     }
                 }
             }
         } catch (e: Exception) {
+            Log.d("CategoryProxy", "getCategories 3: ${e.message}")
             emit(Resource.Failure(UiText.StringResource(there_is_not_network_connection)))
         }
     }

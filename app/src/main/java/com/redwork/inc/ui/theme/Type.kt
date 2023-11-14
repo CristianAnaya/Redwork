@@ -231,7 +231,22 @@ val gray20Bold = TextStyle(
     fontFamily = poppins_family
 )
 
+val gray15Bold = TextStyle(
+    color = Color.Gray,
+    fontSize = 15.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = poppins_family
+)
+
+
 val white20Bold = TextStyle(
+    color = Color.White,
+    fontSize = 20.sp,
+    fontWeight = FontWeight.Bold,
+    fontFamily = poppins_family
+)
+
+val white25Bold = TextStyle(
     color = Color.White,
     fontSize = 20.sp,
     fontWeight = FontWeight.Bold,

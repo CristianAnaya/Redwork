@@ -10,7 +10,7 @@ class AddressProxy(
     private val temporalRepository: AddressTemporalRepository
 ): AddressRepository {
 
-    override fun getAddress(): Flow<Address> = temporalRepository.getAddress()
+    override fun getAddress(): Flow<Address?> = temporalRepository.getAddress()
 
     override suspend fun save(address: Address): Resource<Unit> = temporalRepository.save(address)
 

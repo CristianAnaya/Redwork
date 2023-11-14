@@ -48,6 +48,7 @@ class AuthProxy(
 
                             emit(loginResult)
                         } catch (e: Exception) {
+                            Log.d("TAG", "loginWithOTP: ${e.message}")
                             emit(Resource.Failure(UiText.StringResource(
                                 there_is_not_network_connection
                             )))

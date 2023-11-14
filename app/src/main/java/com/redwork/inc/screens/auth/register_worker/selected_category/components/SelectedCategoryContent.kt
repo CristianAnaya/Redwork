@@ -103,7 +103,7 @@ fun SelectedCategoryContent(
                 }
 
                 if (isExpanded) {
-                    category.services.forEach { service ->
+                    category.services?.forEach { service ->
                         //val isSelected = remember { mutableStateOf(service.isSelected) }
                         val isSelected = selectedServices.getOrElse(service) { false }
 
@@ -142,13 +142,13 @@ fun SelectedCategoryContent(
             roundedCornerValue = 50,
             onClick = {
                 val selectedCategories = categories.mapNotNull { category ->
-                    val selectedServicesForCategory = category.services.filter { service ->
+                    val selectedServicesForCategory = category.services?.filter { service ->
                         selectedServices[service] == true
-                    }.map { selectedService ->
+                    }?.map { selectedService ->
                         selectedService.copy(isSelected = true)
                     }
 
-                    if (selectedServicesForCategory.isNotEmpty()) {
+                    if (selectedServicesForCategory?.isNotEmpty()!!) {
                         category.copy(services = selectedServicesForCategory)
                     } else {
                         null

@@ -104,6 +104,7 @@ class AuthFirebaseRepository: AuthDataSourceRepository {
                     close()
                 }
         } catch (e: Exception) {
+            Log.d("TAG", "loginWithOTP: ${e.message}")
             trySend(Resource.Failure(UiText.StringResource(there_is_not_network_connection)))
             close()
         }

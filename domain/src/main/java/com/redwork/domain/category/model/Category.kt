@@ -6,5 +6,5 @@ data class Category(
     val id: Int,
     val name: String,
     val route: String,
-    val services: List<Service>
+    val services: List<Service>? = null
 )

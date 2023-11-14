@@ -10,7 +10,7 @@ fun Category.toCategoryDto(): CategoryDto {
         id,
         name,
         route,
-        services.map { it.toServiceDto() }
+        services?.map { it.toServiceDto() } ?: emptyList()
     )
 }
 
@@ -19,6 +19,6 @@ fun CategoryDto.toCategory(): Category {
         id,
         name,
         route,
-        services.map { it.toService() }
+        services?.map { it.toService() } ?: emptyList()
     )
 }
