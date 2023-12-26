@@ -524,5 +524,9 @@
     <string name="loading">Cargando...</string>
     <string name="selecte_category">Seleccionar categorias</string>
     <string name="select_location">Seleccionar ubicación</string>
+    <string name="client_settings">Ajustes</string>
+    <string name="client_report">Reportar</string>
+    <string name="client_history">Historial</string>
+    <string name="client_profile">Mi perfil</string>
 
 </resources>

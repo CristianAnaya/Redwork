@@ -2,8 +2,6 @@ package com.redwork.inc.screens.client.available_category.components
 
 import android.util.Log
 import android.widget.Toast
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.redwork.domain.core.Resource
 import com.redwork.inc.R
 import com.redwork.inc.components.asString
@@ -24,21 +23,10 @@ fun GetAvailableCategories(
     paddingValues: PaddingValues,
     viewModel: AvailableCategoryViewModel = hiltViewModel()
 ) {
-
+    //viewModel.getCategories()
     when(val response = viewModel.categoriesResource) {
         is Resource.Loading -> {
-                Box(
-                modifier = Modifier
-                    .padding(paddingValues = paddingValues)
-                    .background(PrimaryDark)
-            ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.marks),
-                        contentDescription = "marks",
-                        modifier = Modifier
-                            .fillMaxSize()
-                    )
-                }
+
         }
         is Resource.Success -> {
             AvailableCategoryContent(

@@ -23,10 +23,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.redwork.domain.category.model.Category
 import com.redwork.inc.R
+import com.redwork.inc.screens.auth.register_worker.info_base.RegisterWorkerViewModel
+import com.redwork.inc.screens.auth.register_worker.info_base.components.RegisterWorkerContent
 import com.redwork.inc.ui.theme.PrimaryDark
 import com.redwork.inc.ui.theme.lightGray15
 import com.redwork.inc.ui.theme.white20Bold
@@ -105,5 +109,13 @@ fun AvailableCategoryContent(
             }
         }
     }
+}
 
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun AvailableCategoryContentPreview() {
+    AvailableCategoryContent(
+        PaddingValues(),
+        listOf(Category(2, "Plomero", "Plumer", null))
+    )
 }

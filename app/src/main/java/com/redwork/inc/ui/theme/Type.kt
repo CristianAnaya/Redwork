@@ -96,6 +96,7 @@ val black15Bold = TextStyle(
     color = Black,
     fontSize = 15.sp,
     fontWeight = FontWeight.Bold,
+    fontFamily = poppins_family
 )
 
 val black20Medium = TextStyle(

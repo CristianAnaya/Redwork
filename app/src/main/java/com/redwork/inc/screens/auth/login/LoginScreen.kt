@@ -13,7 +13,6 @@ import com.redwork.inc.screens.auth.login.components.LoginContent
 import com.redwork.inc.screens.auth.register_client.RegisterClientScreen
 
 @Composable
-
 fun LoginScreen(navController: NavHostController) {
 
     Scaffold(modifier = Modifier.fillMaxSize()) {
