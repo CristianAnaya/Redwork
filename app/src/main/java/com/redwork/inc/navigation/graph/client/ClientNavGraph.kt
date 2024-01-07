@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.redwork.inc.navigation.Graph
 import com.redwork.inc.navigation.screen.client.ClientScreen
 import com.redwork.inc.screens.client.available_category.AvailableCategoryScreen
+import com.redwork.inc.screens.client.calendar.ClientCalendarScreen
 import com.redwork.inc.screens.client.history.ClientHistoryScreen
 import com.redwork.inc.screens.client.order.ClientOrderScreen
 import com.redwork.inc.screens.client.profile.ClientProfileScreen
@@ -41,5 +42,8 @@ fun ClientNavGraph(navController: NavHostController) {
             ClientSettingsScreen(navController)
         }
 
+        composable(route = ClientScreen.Request.route) {
+            ClientCalendarScreen(navController)
+        }
     }
 }

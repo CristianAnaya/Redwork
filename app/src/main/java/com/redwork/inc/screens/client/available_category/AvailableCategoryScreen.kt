@@ -20,6 +20,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
@@ -62,125 +63,15 @@ fun AvailableCategoryScreen(
     navController: NavController,
     viewModel: AvailableCategoryViewModel = hiltViewModel()
 ) {
-    Log.d("TAG", "AvailableCategoryScreen: ")
     viewModel.getCategories()
 
-    val drawerItem = listOf(
-        DrawerItems(Icons.Default.Face, "Profile", ClientScreen.Profile.route),
-        DrawerItems(Icons.Default.DateRange, "Request", ClientScreen.History.route),
-        DrawerItems(Icons.Default.Warning, "Report", ClientScreen.Report.route),
-        DrawerItems(Icons.Default.Settings, "Setting", ClientScreen.Settings.route)
-    )
-
-    var selectedItem by remember { mutableStateOf(drawerItem[0]) }
-    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
-
-    ModalNavigationDrawer(
-        drawerContent = {
-            ModalDrawerSheet {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(200.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Column(
-                            modifier = Modifier
-                                .padding(horizontal = 14.dp)
-                                .padding(start = 10.dp)
-                                .wrapContentSize(),
-                            verticalArrangement = Arrangement.SpaceAround
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.co), contentDescription = "profile image",
-                                modifier = Modifier
-                                    .size(100.dp)
-                                    .clip(CircleShape)
-                            )
-                            Text(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(top = 13.dp),
-                                text = "Cristian Anaya",
-                                style = black15Bold,
-                                fontSize = 22.sp
-                            )
-                        }
-                    }
-                    drawerItem.forEach {
-                        NavigationDrawerItem(
-                            modifier = Modifier
-                                .padding(horizontal = 16.dp)
-                                .padding(top = 10.dp),
-                            label = {
-                                Text(
-                                    text = it.text,
-                                    style = black15Light
-                                )
-                            },
-                            selected = it == selectedItem,
-                            onClick = {
-                                navController.navigate(it.route)
-                                selectedItem = it
-                                scope.launch {
-                                    drawerState.close()
-                                }
-                            },
-                            icon = {
-                                Icon(imageVector = it.icon, contentDescription = it.text)
-                            }
-                        )
-                    }
-                }
-            }
-        },
-        drawerState = drawerState
-        ) {
-        Scaffold(
-            modifier = Modifier.fillMaxSize(),
-            topBar = {
-                CenterAlignedTopAppBar(
-                    title = {
-                        Text(
-                            text = "Redwork"
-                        )
-                    },
-                    navigationIcon = {
-                        IconButton(onClick = {
-                            scope.launch {
-                                drawerState.open()
-                            }
-                        }) {
-                            Icon(
-                                imageVector = Icons.Rounded.ArrowBack,
-                                contentDescription = "Menu",
-                                tint = Color.White
-                            )
-                        }
-                    },
-                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                        containerColor = PrimaryDark
-                    ),
-                    actions = {
-                        IconButton(onClick = { /*TODO*/ }) {
-                            Icon(
-                                imageVector = Icons.Default.Search,
-                                contentDescription = "Search",
-                                tint = Color.White
-                            )
-                        }
-                    }
-                )
-            }
-        ) {
-            GetAvailableCategories(paddingValues = it)
-        }
+    Scaffold(
+        modifier =
+        Modifier.fillMaxSize()
+    ) {
+        GetAvailableCategories(paddingValues = it)
     }
+
 }
 
 @Preview(showBackground = true, showSystemUi = true)

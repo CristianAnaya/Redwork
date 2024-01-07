@@ -35,7 +35,6 @@ fun GetAvailableCategories(
             )
         }
         is Resource.Failure -> {
-            Log.d("TAG", "GetAvailableCategories:")
             Toast.makeText(LocalContext.current, asString(uiText = response.message), Toast.LENGTH_SHORT).show()
         }
         else -> {

@@ -19,6 +19,7 @@ import com.redwork.inc.screens.auth.register_worker.selected_category.SelectedCa
 import com.redwork.inc.screens.auth.roles.RolesScreen
 import com.redwork.inc.screens.auth.splash.SplashScreen
 import com.redwork.inc.screens.client.home.ClientHomeScreen
+import com.redwork.inc.screens.client.main.ClientMainScreen
 
 
 fun NavGraphBuilder.AuthNavGraph(navController: NavHostController) {
@@ -98,7 +99,7 @@ fun NavGraphBuilder.AuthNavGraph(navController: NavHostController) {
         }
 
         composable(route = Graph.CLIENT) {
-            ClientHomeScreen()
+            ClientMainScreen()
         }
 
     }

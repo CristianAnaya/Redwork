@@ -14,14 +14,7 @@ fun ClientReportScreen(
     navController: NavHostController
 ) {
     Scaffold(
-        containerColor = Color.White,
-        topBar = {
-            DefaultTopBar(
-                title = stringResource(id = R.string.client_report),
-                upAvailable = true,
-                navController = navController
-            )
-        }
+        containerColor = Color.White
     ) {
         ClientReportContent(paddingValues = it)
     }

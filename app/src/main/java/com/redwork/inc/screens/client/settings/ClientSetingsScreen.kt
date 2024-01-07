@@ -16,14 +16,7 @@ fun ClientSettingsScreen(
     navController: NavHostController
 ) {
     Scaffold(
-        containerColor = Color.White,
-        topBar = {
-            DefaultTopBar(
-                title = stringResource(id = R.string.client_profile),
-                upAvailable = true,
-                navController = navController
-            )
-        }
+        containerColor = Color.White
     ) {
         ClientSettingsContent(paddingValues = it)
     }
